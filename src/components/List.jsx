@@ -1,7 +1,7 @@
 import React from 'react'
 import InfiniteScroll from './InfiniteScroll'
 
-const List = props => {
+const List = () => {
     return (
         <div className='list'>
             <InfiniteScroll />

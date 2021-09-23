@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.infiniteScroll-item{
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
