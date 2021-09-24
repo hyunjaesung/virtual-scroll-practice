@@ -25,21 +25,20 @@ const InfiniteScroll = props => {
 
 
     const handleScroll = ({ target: { scrollTop } }) => {
-        console.log('scroll', scrollTop);
-
         const startIdx = Math.floor(scrollTop / ITEM_HEIGHT);
-        const endIdx = Math.min(startIdx + VISIBLE_COUNT, data.length - 1)
+        const endIdx = Math.min(startIdx + VISIBLE_COUNT, data.length)
         const newViewData = data.slice(startIdx, endIdx);
+
         const newPaddingTop = Math.max(startIdx * ITEM_HEIGHT, 0);
-        console.log(startIdx, endIdx, newPaddingTop);
+
         setPaddingTop(newPaddingTop)
         setViewData(newViewData);
     }
-    console.log('data',data, viewData);
+
     return (
         <div className="infiniteScroll" style={{ height: totalHeight }}>
             <div className="viewPort" onScroll={handleScroll} style={{ height: viewportHeight - 100, overflowY: 'auto' }}>
-                <div className="buffer" style={{ paddingTop }}>
+                <div className="buffer" style={{ paddingTop, paddingBottom:ITEM_HEIGHT }}>
                 {viewData.map(({id, name}) => (
                     <div className="infiniteScroll-item" key={id} style={{ height: ITEM_HEIGHT }}>
                         <span>{name}</span>
