@@ -35,7 +35,6 @@ const InfiniteScroll = props => {
         const newViewData = data.slice(startIdx, endIdx);
 
         const newPaddingTop = Math.max(startIdx * ITEM_HEIGHT, 0);
-        console.log(scrollTop,startIdx, endIdx, data.length, data);
 
         setPaddingTop(newPaddingTop);
         setViewData(newViewData);
