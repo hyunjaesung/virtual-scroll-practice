@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from '../utils/fakeAxios';
 
 const VISIBLE_COUNT = 10;
@@ -7,14 +7,19 @@ const ITEM_HEIGHT = 100;
 const InfiniteScroll = props => {
     const [data, setData] = useState([]);
 
-    const callApi = async () => {
+    const initApi = async () => {
         const listData = await axios.get();
         setData(listData);
         setViewData(listData.slice(0, VISIBLE_COUNT));
     }
 
+    const callApi = async () => {
+        const listData = await axios.get();
+        setData(prev => [...prev, ...listData]);
+    }
+
     useEffect(() => {
-        callApi();
+        initApi();
     }, [])
 
     const [viewData, setViewData] = useState([]);
@@ -30,9 +35,14 @@ const InfiniteScroll = props => {
         const newViewData = data.slice(startIdx, endIdx);
 
         const newPaddingTop = Math.max(startIdx * ITEM_HEIGHT, 0);
+        console.log(scrollTop,startIdx, endIdx, data.length, data);
 
-        setPaddingTop(newPaddingTop)
+        setPaddingTop(newPaddingTop);
         setViewData(newViewData);
+
+        if(endIdx + 5 > data.length - 1){
+            callApi();
+        }
     }
 
     return (
