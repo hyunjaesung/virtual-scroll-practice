@@ -46,7 +46,7 @@ const InfiniteScroll = props => {
 
     return (
         <div className="infiniteScroll" style={{ height: totalHeight }}>
-            <div className="viewPort" onScroll={handleScroll} style={{ height: viewportHeight - 100, overflowY: 'auto' }}>
+            <div className="viewPort" onScroll={handleScroll} style={{ height: viewportHeight, overflowY: 'auto' }}>
                 <div className="buffer" style={{ paddingTop, paddingBottom:ITEM_HEIGHT }}>
                 {viewData.map(({id, name}) => (
                     <div className="infiniteScroll-item" key={id} style={{ height: ITEM_HEIGHT }}>
